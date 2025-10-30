@@ -210,6 +210,7 @@ else:
                 song_objects: List[Song] = []
             else:
                 try:
+                    print(f"openai tool output: {openai_call}")
                     content = openai_call["result"]["choices"][0]["message"]["content"]
                     parsed = json.loads(content)
 
