@@ -146,12 +146,6 @@ if not st.session_state.token_info:
         st.success("Successfully logged in with Spotify! 🎉")
         st.rerun()
 else:
-    # Refresh token if expired
-    if auth_manager.is_token_expired(st.session_state.token_info):
-        st.session_state.token_info = auth_manager.refresh_access_token(
-            st.session_state.token_info["refresh_token"]
-        )
-
     sp = spotipy.Spotify(auth=st.session_state.token_info["access_token"])
     profile = sp.current_user()
     st.success(f"Logged in as: {profile['display_name']}")
