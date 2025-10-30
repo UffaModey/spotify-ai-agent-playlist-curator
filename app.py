@@ -26,9 +26,6 @@ from dotenv import load_dotenv
 # Load variables from .env file
 load_dotenv()
 
-# Access the environment variables
-openai_api_key = os.getenv("OPENAI_API_KEY")
-
 SPOTIFY_ADD_BATCH_SIZE = 100  # Spotify API supports up to 100 URIs per add request
 SPOTIPY_CLIENT_ID = os.getenv("SPOTIPY_CLIENT_ID")
 SPOTIPY_CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET")
