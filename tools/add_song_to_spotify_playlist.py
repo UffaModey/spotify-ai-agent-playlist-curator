@@ -1,13 +1,4 @@
 import requests
-import os
-from dotenv import load_dotenv
-
-# Load variables from .env file
-load_dotenv()
-
-# Access the environment variables
-# spotify_token = os.getenv("SPOTIFY_BEARER_TOKEN")
-
 
 def add_items_to_playlist(playlist_id, uris, spotify_token):
     """

@@ -1,13 +1,4 @@
 import requests
-from dotenv import load_dotenv
-import os
-
-# Load variables from .env file
-load_dotenv()
-
-# Access the environment variables
-# spotify_token = os.getenv("SPOTIFY_BEARER_TOKEN")
-
 
 def get_current_user_profile(spotify_token):
     """

@@ -1,13 +1,4 @@
 import requests
-import os
-from dotenv import load_dotenv
-
-# Load variables from .env file
-load_dotenv()
-
-# Access the environment variables
-# spotify_token = os.getenv("SPOTIFY_BEARER_TOKEN")
-
 
 def search_for_item(q, spotify_token, item_type="track"):
     """
