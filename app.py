@@ -143,9 +143,11 @@ if not st.session_state.token_info:
         code = query_params["code"]
         token_info = auth_manager.get_access_token(code)
         st.session_state.token_info = token_info
+
         st.success("Successfully logged in with Spotify! 🎉")
         st.rerun()
 else:
+    print(f"token_info: {st.session_state.token_info}")
     sp = spotipy.Spotify(auth=st.session_state.token_info["access_token"])
     profile = sp.current_user()
     st.success(f"Logged in as: {profile['display_name']}")
