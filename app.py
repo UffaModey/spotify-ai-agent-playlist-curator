@@ -144,7 +144,6 @@ if not st.session_state.token_info:
         st.success("Successfully logged in with Spotify! 🎉")
         st.rerun()
 else:
-    print(f"token_info: {st.session_state.token_info}")
     sp = spotipy.Spotify(auth=st.session_state.token_info["access_token"])
     profile = sp.current_user()
     st.success(f"Logged in as: {profile['display_name']}")
@@ -203,7 +202,6 @@ else:
                 song_objects: List[Song] = []
             else:
                 try:
-                    print(f"openai tool output: {openai_call}")
                     content = openai_call["result"]["choices"][0]["message"]["content"]
                     parsed = json.loads(content)
 
@@ -309,10 +307,6 @@ else:
                             }
                         )
 
-                st.info(
-                    f"{len(track_uris)} track URIs resolved out of {len(song_objects)} requested."
-                )
-
                 # -------------------------
                 # Tool 5: Add tracks in batches
                 # -------------------------
@@ -336,7 +330,6 @@ else:
                                 st.session_state.errors.append(err)
                                 # decide whether to continue trying remaining chunks or stop; here we continue
                                 continue
-                        st.success("Tracks added to playlist (where possible).")
                     except Exception as exc:
                         tb = traceback.format_exc()
                         st.error(f"Unexpected error while adding tracks: {exc}")
@@ -372,7 +365,7 @@ else:
         st.write(f"**Name:** {info.get('playlist_name')}")
         st.write(f"**Description used:** {info.get('playlist_description')}")
         st.write(
-            f"**Resolved tracks added (approx):** {info.get('resolved_track_count')}"
+            f"**Resolved tracks added:** {info.get('resolved_track_count')}"
         )
         st.write("**Songs returned by OpenAI:**")
         for s in info.get("songs", []):
