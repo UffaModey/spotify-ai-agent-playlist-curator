@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Access the environment variables
-spotify_token = os.getenv("SPOTIFY_BEARER_TOKEN")
+# spotify_token = os.getenv("SPOTIFY_BEARER_TOKEN")
 
 
-def add_items_to_playlist(playlist_id, uris):
+def add_items_to_playlist(playlist_id, uris, spotify_token):
     """
     Function to add one or more items to a user's Spotify playlist.
 

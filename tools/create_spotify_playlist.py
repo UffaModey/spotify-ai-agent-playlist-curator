@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Access the environment variables
-spotify_token = os.getenv("SPOTIFY_BEARER_TOKEN")
+# spotify_token = os.getenv("SPOTIFY_BEARER_TOKEN")
 
 
-def create_playlist(user_id, playlist_name):
+def create_playlist(user_id, playlist_name, spotify_token):
     """
     Function to create a new playlist on Spotify.
 

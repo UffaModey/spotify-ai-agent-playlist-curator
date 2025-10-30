@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Access the environment variables
-spotify_token = os.getenv("SPOTIFY_BEARER_TOKEN")
+# spotify_token = os.getenv("SPOTIFY_BEARER_TOKEN")
 
 
-def search_for_item(q, item_type="track"):
+def search_for_item(q, spotify_token, item_type="track"):
     """
     Function to search for items on Spotify.
 

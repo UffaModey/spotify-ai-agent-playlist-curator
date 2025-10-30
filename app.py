@@ -228,8 +228,10 @@ else:
                 # -------------------------
                 # Tool 2: Spotify - get current user profile
                 # -------------------------
+                spotify_token = st.session_state.token_info["access_token"]
+
                 profile_call = safe_call(
-                    "Spotify (get_current_user_profile)", get_current_user_profile
+                    "Spotify (get_current_user_profile)", get_current_user_profile, spotify_token
                 )
                 if "error" in profile_call:
                     err = profile_call["error"]
@@ -253,7 +255,7 @@ else:
                 # -------------------------
                 playlist_name = f"AI: {playlist_title[:40]}"
                 create_playlist_call = safe_call(
-                    "Spotify (create_playlist)", create_playlist, user_id, playlist_name
+                    "Spotify (create_playlist)", create_playlist, user_id, playlist_name, spotify_token
                 )
                 if "error" in create_playlist_call:
                     err = create_playlist_call["error"]
@@ -283,7 +285,7 @@ else:
                 for s in song_objects:
                     q = f"track:{s.title} artist:{s.artist}"
                     search_call = safe_call(
-                        "Spotify (search_for_item)", search_for_item, q
+                        "Spotify (search_for_item)", search_for_item, q, spotify_token
                     )
                     if "error" in search_call:
                         err = search_call["error"]
@@ -322,6 +324,7 @@ else:
                                 add_items_to_playlist,
                                 playlist_id,
                                 chunk,
+                                spotify_token
                             )
                             if "error" in add_call:
                                 err = add_call["error"]
