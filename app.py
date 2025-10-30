@@ -138,10 +138,10 @@ if not st.session_state.token_info:
     st.markdown(f"[🔑 Login with Spotify]({auth_url})", unsafe_allow_html=True)
 
     # Handle redirect from Spotify with ?code=
-    query_params = st.query_params.to_dict()
+    query_params = st.query_params
     if "code" in query_params:
         code = query_params["code"]
-        token_info = auth_manager.get_access_token(code, as_dict=True)
+        token_info = auth_manager.get_access_token(code)
         st.session_state.token_info = token_info
         st.success("Successfully logged in with Spotify! 🎉")
         st.rerun()
