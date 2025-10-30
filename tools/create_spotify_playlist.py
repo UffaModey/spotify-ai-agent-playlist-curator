@@ -1,5 +1,6 @@
 import requests
 
+
 def create_playlist(user_id, playlist_name, spotify_token):
     """
     Function to create a new playlist on Spotify.

@@ -1,5 +1,6 @@
 import requests
 
+
 def get_current_user_profile(spotify_token):
     """
     Function to get the current user's profile from Spotify.

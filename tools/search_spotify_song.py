@@ -1,5 +1,6 @@
 import requests
 
+
 def search_for_item(q, spotify_token, item_type="track"):
     """
     Function to search for items on Spotify.
