@@ -135,17 +135,23 @@ st.title("🎵 AI Spotify Playlist Curator")
 
 if not st.session_state.token_info:
     auth_url = auth_manager.get_authorize_url()
-    st.markdown(f"[Login with Spotify]({auth_url})")
+    st.markdown(f"[🔑 Login with Spotify]({auth_url})", unsafe_allow_html=True)
 
     # Handle redirect from Spotify with ?code=
-    query_params = st.query_params
+    query_params = st.query_params.to_dict()
     if "code" in query_params:
         code = query_params["code"]
-        token_info = auth_manager.get_access_token(code)
+        token_info = auth_manager.get_access_token(code, as_dict=True)
         st.session_state.token_info = token_info
         st.success("Successfully logged in with Spotify! 🎉")
         st.rerun()
 else:
+    # Refresh token if expired
+    if auth_manager.is_token_expired(st.session_state.token_info):
+        st.session_state.token_info = auth_manager.refresh_access_token(
+            st.session_state.token_info["refresh_token"]
+        )
+
     sp = spotipy.Spotify(auth=st.session_state.token_info["access_token"])
     profile = sp.current_user()
     st.success(f"Logged in as: {profile['display_name']}")
